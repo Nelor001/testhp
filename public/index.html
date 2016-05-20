@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>first</title>
+	</head>
+	<body>
+	<hp>test</hp>
+	<script src="jspm_packages/system.js"></script>
+	<script src="jspm.browser.js"></script>
+	<script src="jspm.config.js"></script>
+	<script>
+	window.addEventListener("load", function()
+	{
+		System.import('app/main')
+		.then((bootstrap) => { bootstrap.default()
+			.then(function() { console.log('done'); },
+			(err) => { console.log(err); }); },
+		(err) => { console.log(err); });
+	});
+	</script>
+	</body>
+</html>

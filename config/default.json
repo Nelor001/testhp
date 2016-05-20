@@ -1,0 +1,15 @@
+{
+	"host": "localhost",
+	"port": 3030,
+	"mariadb": "mariadb://root:@localhost:3306/fhp",
+	"public": "../public/",
+	"auth":
+	{
+		"idField": "id",
+		"token":
+		{
+			"secret": "G40pT6Xc082lGh0iIHsScqZHeDVixorONG4JxXcYgP5y9qgPA+aDhvCQ/+kGpNadKWMT1A+FJ008AljU+lB+yg=="
+		},
+		"local": {}
+	}
+}
