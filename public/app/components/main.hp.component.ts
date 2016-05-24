@@ -2,12 +2,17 @@ import 'zone.js';
 import 'reflect-metadata';
 
 import { Component } from '@angular/core';
-import { userlistComponent } from './userlist.component.ts'
+import { UserlistComponent } from './userlist.component.ts';
 
 @Component({
 	selector: 'hp-main',
-	directives: [userlistComponent],
-	templateUrl: 'app/templates/main.template.html'
+	//templateUrl: 'app/templates/main.template.html',
+	template:`
+	<main>
+		<hp-userlist>USERLIST</hp-userlist>
+	</main>
+	`/*,
+	directives: [UserlistComponent]*/
 })
 export class mainComponent
 {

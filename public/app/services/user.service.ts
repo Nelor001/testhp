@@ -1,9 +1,10 @@
 import 'zone.js';
 import 'reflect-metadata';
 
-import { Injectable } from '@angular/core';
-
-@Injectable()
+import { Inject } from '@angular/core';
+//import { Injectable } from '@angular/core';
+//import { socketService } from './socket.service.ts';
+//@Injectable()
 export class userService
 {
 	private _socket:any;

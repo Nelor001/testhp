@@ -1,3 +1,4 @@
+import 'es6-shim';
 import 'zone.js';
 import 'reflect-metadata';
 
@@ -8,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { socketService } from 'app/services/socket.service.ts';
 import { headerComponent } from 'app/components/header.hp.component.ts';
 import { mainComponent } from 'app/components/main.hp.component.ts';
-import { footerComponent } from 'app/components/footer.hp.component.ts'
+import { footerComponent } from 'app/components/footer.hp.component.ts';
 
 //enableProdMode();
 
