@@ -12,13 +12,13 @@
 	<script src="jspm.browser.js"></script>
 	<script src="jspm.config.js"></script>
 	<script>
-	window.addEventListener("load", function()
+	window.addEventListener("load", function loadCallback()
 	{
 		System.import('app/main')
 		.then((bootstrap) => { bootstrap.default()
 			.then(function() { console.log('done'); },
-			(err) => { console.log("fhp->Bootstrap Error=>\n" + err); }); },
-		(err) => { console.log("fhp->loading Error=>\n" + err); });
+			(err) => { console.error("fhp->Bootstrap Error=>\n" + err); }); },
+		(err) => { console.error("fhp->loading Error=>\n" + err); });
 	});
 	</script>
 	</body>

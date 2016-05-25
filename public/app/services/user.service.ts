@@ -1,13 +1,13 @@
 import 'zone.js';
 import 'reflect-metadata';
 
-import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 //import { Injectable } from '@angular/core';
 //import { socketService } from './socket.service.ts';
-//@Injectable()
+@Injectable()
 export class userService
 {
-	private _socket:any;
+	/*private _socket:any;
 	
 	constructor(private _socketService:socketService)
 	{
@@ -21,5 +21,5 @@ export class userService
 			if(err) { return Promise.reject(err); }
 			else	{ return Promise.resolve(users); }
 		});
-	}
+	}*/
 }

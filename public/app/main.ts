@@ -1,4 +1,4 @@
-import 'es6-shim';
+
 import 'zone.js';
 import 'reflect-metadata';
 
@@ -10,6 +10,7 @@ import { socketService } from 'app/services/socket.service.ts';
 import { headerComponent } from 'app/components/header.hp.component.ts';
 import { mainComponent } from 'app/components/main.hp.component.ts';
 import { footerComponent } from 'app/components/footer.hp.component.ts';
+//import 'es6-shim';
 
 //enableProdMode();
 
@@ -31,16 +32,16 @@ import { footerComponent } from 'app/components/footer.hp.component.ts';
 })
 class hpComponent
 {	
-	private _socket:any;
+	//private _socket:any;
 	
-	constructor(private _titleService:Title, private _socketService:socketService)
+	constructor(private _titleService:Title/*, private _socketService:socketService*/)
 	{
 		_titleService.setTitle('testhp');
-		this._socket = _socketService.getIO();
+		//this._socket = _socketService.getIO();
 	}
 }
 
 export default function()
 {
-	bootstrap(hpComponent);
+	return bootstrap(hpComponent);
 }

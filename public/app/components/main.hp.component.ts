@@ -11,8 +11,8 @@ import { UserlistComponent } from './userlist.component.ts';
 	<main>
 		<hp-userlist>USERLIST</hp-userlist>
 	</main>
-	`/*,
-	directives: [UserlistComponent]*/
+	`,
+	directives: [UserlistComponent]
 })
 export class mainComponent
 {
