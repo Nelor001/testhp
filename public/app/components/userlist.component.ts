@@ -1,3 +1,4 @@
+
 import { Component, provide, NgZone} from '@angular/core';
 
 import { userService } from '../services/user.service.ts';
@@ -15,10 +16,10 @@ export class UserlistComponent
 {
 	private userService:userService;
 	private socket:any;
-	public users:any[] =
+	public users:any[];/* =
 	[ 	{ "login":"test" },
 		{ "login":"test2"},
-		{ "login":"test3"} ];
+		{ "login":"test3"} ];*/
 	private zone:NgZone;
 	
 	constructor(_userService:userService,_socketService: socketService)
@@ -30,6 +31,23 @@ export class UserlistComponent
 	
 	ngOnInit()
 	{
+		console.log(this.userService);
+		this.userService.find()
+		.then((_users) =>
+		{
+			console.log('_users:');
+			console.log(_users);
+			this.zone.run(() =>
+			{
+				this.users = _users;
+			});
+		},
+		(err) =>
+		{
+			console.log("testhp->userlist->\n");
+			console.log(err);
+		});
+		
 		this.socket.on('users created', (user) =>
 		{
 			
@@ -39,10 +57,9 @@ export class UserlistComponent
 				console.log('Event: User <'+user.login+'> created.');
 			});
 		});
+
 		console.log('testhp: Userlist registered users created.')
 		
-		/*this.userService.find({})
-		.then((_users) => { this.users = _users; },
-		(err) => { console.log("hp->userlist->\n" + err); })
-	*/}
+		
+	}
 }

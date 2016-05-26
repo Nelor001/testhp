@@ -1,25 +1,38 @@
-import 'zone.js';
-import 'reflect-metadata';
+/*import 'zone.js';
+import 'reflect-metadata';*/
 
 import { Injectable } from '@angular/core';
-//import { Injectable } from '@angular/core';
-//import { socketService } from './socket.service.ts';
+import { socketService } from './socket.service.ts';
+
 @Injectable()
 export class userService
 {
-	/*private _socket:any;
+	private socket:any;
 	
 	constructor(private _socketService:socketService)
 	{
-		this._socket = _socketService.getIO();
+		this.socket = _socketService.getIO();
 	}
 	
 	find(query:any)
 	{
-		socket.emit('users::find', query, (err, users) =>
+		return new Promise((resolve, reject) =>
 		{
-			if(err) { return Promise.reject(err); }
-			else	{ return Promise.resolve(users); }
+			this.socket.emit('users::find', query, (err, users) =>
+			{
+				if(err)
+				{
+					console.log('Error: userService.get() =>');
+					console.error(err);
+					reject(err);
+				}
+				else
+				{
+					console.log('userService.get() received users:');
+					console.log(users);
+					resolve(users);
+				}
+			});
 		});
-	}*/
+	}
 }
