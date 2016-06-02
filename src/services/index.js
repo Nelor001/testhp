@@ -15,8 +15,26 @@ module.exports = function() {
   });
   app.set('sequelize', sequelize);
 
-  app.configure(authentication);
+  /*app.configure(authentication);
   app.configure(profiles);
-  app.configure(user);
- 
+  app.configure(user)*/
+
+	app.set('_servicePromise', sequelize.query('SET FOREIGN_KEY_CHECKS = 0;'));
+
+	let services =
+	[
+		authentication,
+		profiles,
+		user
+	];
+	
+	services.forEach((currentService) => { app.configure(currentService);});
+	
+	app.get('_servicePromise')
+	.then(() =>
+	{
+		return sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+	})
+	.catch((err) => { console.log('Error: services/index.js->service init =>'); console.error(err); });
+	
 };

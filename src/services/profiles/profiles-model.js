@@ -9,8 +9,17 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize)
 {
+	let app = this;
+	
 	const profiles = sequelize.define('profiles',
 	{
+		id:
+		{
+			type: Sequelize.INTEGER.UNSIGNED,
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true
+		},
 		text:
 		{
 		  type: Sequelize.STRING,
@@ -21,11 +30,16 @@ module.exports = function(sequelize)
 		freezeTableName: true
 	});
 	
-	sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-	.then(function() { return profiles.sync({ force:true });})
-	.then(function() { return sequelize.query('SET FOREIGN_KEY_CHECKS = 1');} )
-	.then(function() { console.log("Model 'profiles' synchronised."); },
-	(err) => { console.log("ERR::TESTHP->SERVICES->profiles->model->sync => \n" + err); });
+	app.set('_servicePromise',
+	app.get('_servicePromise')
+	.then(() =>
+	{
+		return profiles.sync({ force:true })
+		.then(() => { console.log("Model 'profiles': synchronized."); });
+	}));
+	//.then(() => { console.log("Model 'profiles': sync scheduled.");}));
+	//.then(null, (err) => { console.log("ERR::TESTHP->SERVICES->profiles->model->sync => \n" + err); })
+	//.then(() => { return profiles; }));
 	
 	return profiles;
 };

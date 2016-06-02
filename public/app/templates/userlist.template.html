@@ -1,5 +1,12 @@
-<ul>
-	<li *ngFor="let user of users">{{user.login}}</li>
-</ul>
+<table>
+	<tr *ngFor="let user of users">
+		<td>{{user.login}}</td>
+		<td>{{user.email}}</td>
+	</tr>
+</table>
+Mail:<input #mail>
+Login:<input #login>
+PW:<input #password>
+<button (click)="onCreateClick(mail, login, password)">Create User</button>
 
 <!-- Note: I believe the socket serviceis rejected by angular for some reason, meaning I cant integrate sockets like this. Need to find another way, perhaps retrying to use another script.-->

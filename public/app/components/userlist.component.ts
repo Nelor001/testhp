@@ -16,10 +16,7 @@ export class UserlistComponent
 {
 	private userService:userService;
 	private socket:any;
-	public users:any[];/* =
-	[ 	{ "login":"test" },
-		{ "login":"test2"},
-		{ "login":"test3"} ];*/
+	public users:any[];
 	private zone:NgZone;
 	
 	constructor(_userService:userService,_socketService: socketService)
@@ -53,13 +50,21 @@ export class UserlistComponent
 			
 			this.zone.run(() =>
 			{
-				this.users.push({"login":user.login});
+				this.users.push({"login":user.login, "email":user.email});
 				console.log('Event: User <'+user.login+'> created.');
 			});
 		});
-
-		console.log('testhp: Userlist registered users created.')
 		
-		
+		console.log('testhp: Userlist registered users created.');
+	}
+	
+	onCreateClick(mail, login, password)
+	{
+		this.userService.create(
+		{
+			'login': login.value,
+			'email': mail.value,
+			'password': password.value
+		});
 	}
 }

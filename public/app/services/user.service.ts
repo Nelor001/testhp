@@ -22,15 +22,37 @@ export class userService
 			{
 				if(err)
 				{
-					console.log('Error: userService.get() =>');
+					console.log('Error: userService.find() =>');
 					console.error(err);
 					reject(err);
 				}
 				else
 				{
-					console.log('userService.get() received users:');
+					console.log('userService.find() received users:');
 					console.log(users);
 					resolve(users);
+				}
+			});
+		});
+	}
+	
+	create(query: any)
+	{
+		this.socket.emit('users::create', query, (err, user) =>
+		{
+			return new Promise((resolve, reject) =>
+			{
+				if(err)
+				{
+					console.log('Error: userService.create() =>');
+					console.error(err);
+					reject(err);
+				}
+				else
+				{
+					console.log('userService.create() suceeded!');
+					console.log(user);
+					resolve(user);
 				}
 			});
 		});

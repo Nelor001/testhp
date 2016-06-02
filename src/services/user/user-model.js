@@ -9,21 +9,27 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize)
 {
-	const app = this;
+	let app = this;
 	const user = sequelize.define('users',
 	{	//Attributes
-	id:
+		/*id:
 		{
 			type: Sequelize.INTEGER.UNSIGNED,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
-		},
+		},*/
 	login:
 		{
 			type: Sequelize.STRING,
 			allowNull: false,
-			unique:true
+			unique: true
+		},
+	email:
+		{
+			type: Sequelize.STRING,
+			allowNull: false,
+			unique: true
 		},
 	password:
 		{
@@ -31,7 +37,8 @@ module.exports = function(sequelize)
 			allowNull: false
 		}
 	},  
-	{	//Options
+	{	//OptionsOrtello, 27.05, CC -> Entweder Oder explodiert
+
 		freezeTableName: true
 	});
 
@@ -42,13 +49,16 @@ module.exports = function(sequelize)
 	
 	const profiles = app.service('profiles').Model; //Nelor Don't forget to make sure the service already exists when you establish this one.
 	
-	user.hasOne(profiles);
+	user.belongsTo(profiles);
 	
-	sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-	.then(function() { return user.sync({ force:true });})
-	.then(function() { return sequelize.query('SET FOREIGN_KEY_CHECKS = 1');} )
-	.then(function() { console.log("Table 'user' synchronised."); },
-	(err) => { console.log(err); });
+	app.set('_servicePromise',
+	app.get('_servicePromise')
+	.then(() =>
+	{
+		return user.sync({ force:true })
+		.then(() => { console.log("Model 'user': synchronized."); });
+	}));
+	//.then(() => { console.log("Model 'user': sync scheduled.");}));
 	
 	return user;
 };

@@ -19,15 +19,10 @@ import { footerComponent } from 'app/components/footer.hp.component.ts';
 	providers: [provide(Title, { useClass: Title}),
 				provide(socketService, { useClass: socketService}) ], //Nelor: Provide takes 2 paramters: first is the label used to determine the depedency, second is a configuration object which in this form tells the Injector which class to use to satisfy it. Essentially that means this syntax satisfies truely decoupled dependencies, which is preferrable to the limited capabilities of the more common shorthand notation.
 	template:`
-	<div>
-	beginn
-	<hp-header></hp-header>
-	2
-	<hp-main></hp-main>
-	1
-	<hp-footer></hp-footer>
-	ende
-	</div>`,
+	<hp-header>Header</hp-header>
+	<hp-main>Main</hp-main>
+	<hp-footer>Footer</hp-footer>`,
+	styleUrls:['app/main.css'],
 	directives: [ headerComponent, mainComponent, footerComponent ],
 })
 class hpComponent

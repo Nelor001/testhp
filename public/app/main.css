@@ -1,0 +1,27 @@
+:host
+{
+	display:flex;
+	flex-direction:column;
+	height:100vh;
+	justify-content:space-between;
+}
+
+hp-header
+{
+	flex: 15 1 auto;
+}
+
+hp-main
+{
+	flex: 70 1 auto;
+}
+
+hp-footer
+{
+	flex: 5 1 auto;
+}
+
+*
+{
+	border: 1px solid black;
+}
